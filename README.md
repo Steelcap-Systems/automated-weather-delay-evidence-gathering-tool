@@ -1,23 +1,88 @@
-# Automated Weather Delay Evidence Gathering Tool
+# AI Spec Engineering for Weather Delay Evidence
+## Agent-Generated, Language-Agnostic Tooling with Conformance Checks
 
-Construction weather delays are common, but proving them is harder than it should be.
+Most teams are still asking, "How do we use AI to code faster?"
 
-## The Problem
+This repo is built around a better question:
+**How do humans design systems so AI can deliver reliable software across any stack?**
 
-Most Site Diary tools let you record a weather delay, but a diary entry alone rarely holds up when a claim is challenged. The standard evidence source is Bureau of Meteorology automated weather station data (timestamped, authoritative, and widely accepted), but only when the weather affecting your site is the same weather affecting the nearest station, which isn't always the case.
+---
 
-Storms don't respect station coverage zones, and a cell can drench one suburb while the next stays dry. If your site is caught in a localised event, the nearest BOM station won't show it, leaving your claim without data support even when work was genuinely impossible.
+## Why This Exists
 
-## What This Tool Does
+Weather delays are common in construction.  
+Defensible weather delay evidence is not.
 
-When a delay is recorded, the tool automatically pulls BOM data for the relevant station and time window and attaches it to the delay record. At the same time, it captures radar and synoptic chart imagery showing cloud cover, rainfall intensity and storm cell movement, compiling it into a timestamped GIF of the event as it tracked across the area, with the site coordinates plotted against it so the relationship between the storm and the site is immediately clear to anyone reviewing the claim.
+A diary note alone is weak. BOM station data is authoritative, but local storms can miss nearby stations. Claims fail when evidence is incomplete.
 
-The result is a contemporaneous, multi-source evidence record that is very difficult to challenge: a diary entry saying work stopped, a BOM record of what the station captured, and a radar GIF showing the storm cell passing directly over the site at that time.
+The goal is a repeatable evidence bundle:
+- diary event timestamp
+- BOM station observations for the delay window
+- radar/synoptic visual sequence showing storm movement over site coordinates
 
-## Why Capture Has to Happen Live
+---
 
-Live radar imagery isn't stored indefinitely, and once a weather event passes the animated map data showing the storm in motion is gone. This tool captures at the time of the event, triggered by the Site Diary entry, so by the time anyone asks for evidence it already exists.
+## Human Role in an AI-First Workflow
+
+In an AI-first world, humans are not replaced by agents.  
+Humans own the high-leverage work agents cannot infer:
+
+1. Encode local truth
+2. Write execution contracts
+3. Build conformance checks
+4. Decide confidence from results
+
+This repository is a practical example of that model.
+
+---
+
+## What This Repo Actually Does
+
+This is intentionally **not** a packaged app.
+
+It is a spec-first project that lets you generate the tool in your own stack with your AI agent, then verify behavior against shared expectations.
+
+### Specifically, this repo focuses on:
+
+1. **Local truth (domain edge cases)**  
+   Localized storm behavior, time-window sensitivity, and site-vs-station mismatch are treated as first-class requirements.
+
+2. **Execution contract (agent-readable spec)**  
+   The weather-delay evidence workflow is described as an implementation contract, not vague product prose.
+
+3. **Verification mindset (conformance, not vibes)**  
+   Generated implementations are meant to be tested and logged, so reliability claims can be backed by evidence.
+
+4. **Human confidence calls (evidence over assumptions)**  
+   Reliability is judged from repeat runs and logged outcomes, not a single successful generation.
+
+---
+
+## Who This Is For
+
+- Engineers who want to showcase strong AI-era software practice
+- Product teams that need language freedom (Python, Node, C#, etc.)
+- Builders who prefer "generate in my stack" over adopting a single vendor package
+
+If you read this and think, "this person understands how to use AI well," great.  
+If you read this and think, "I should clone this and try it," even better.
+
+---
+
+## Use It Yourself
+
+1. Clone the repo.
+2. Feed the spec to your AI coding agent.
+3. Generate an implementation in your language of choice.
+4. Run verification scenarios.
+5. Log pass/fail outcomes across repeated runs.
+
+That is the point of this project:  
+**you should be able to take this and produce working code yourself.**
+
+---
 
 ## Status
 
-Open source. Free to use. Built to solve a specific gap that existing construction software does not address.
+Open source. Free to use.  
+Built as an AI-first pattern for producing defensible weather delay evidence tooling.
